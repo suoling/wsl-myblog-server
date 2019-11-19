@@ -1,0 +1,18 @@
+extends layout
+block content
+    h1 更新用户资料
+    form(method='post', action='updateUser')
+        div.form-row
+            label
+                span ID:
+                input(type='text',name='id')
+        div.form-row
+            label
+                span phone:
+                input(type='text',name='phone')
+        div.form-row
+            label
+                span pass:
+                input(type='text',name='pass')
+        div.form-row
+            input(type='submit')

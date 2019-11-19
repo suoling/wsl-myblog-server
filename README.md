@@ -1,0 +1,1 @@
+- DEBUG=blogserver:* npm start
