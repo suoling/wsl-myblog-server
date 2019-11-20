@@ -1,0 +1,7 @@
+{
+  "insertSQL": "insert into test_user (name, age, address) values('<%= name %>','<%= age %>','<%= address %>')",
+  "updateSQL":"update test_user set name='<%= name %>', age='<%= age %>', address='<%= address %>' WHERE id='<%= id %>'",
+  "deleteSQL": "delete from test_user where id='<%= id %>'",
+  "queryByIdSQL": "select * from test_user where id='<%= id %>'",
+  "queryAllSQL": "select * from test_user"
+}

@@ -1,18 +1,22 @@
 extends layout
 block content
-    h1 更新用户资料
-    form(method='post', action='updateUser')
+    h1 更新测试用户资料
+    form(method='post', action='updateTest')
         div.form-row
             label
-                span ID:
+                span id:
                 input(type='text',name='id')
         div.form-row
             label
-                span phone:
-                input(type='text',name='phone')
+                span name:
+                input(type='text',name='name')
         div.form-row
             label
-                span pass:
-                input(type='text',name='pass')
+                span age:
+                input(type='text',name='age')
+        div.form-row
+            label
+                span address:
+                input(type='text',name='address')
         div.form-row
             input(type='submit')
