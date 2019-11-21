@@ -1,4 +1,4 @@
-const pool = require('../libs/pool')
+const sqlOperateRes = require('../libs/sqlOperateRes')
 const ejs = require('ejs')
 const json = require('../sqltempl/index.json')
 
@@ -18,25 +18,6 @@ const indexMapper = {
   queryById (id) {
     return sqlOperateRes(ejs.render(json.queryByIdSQL, { id }, { delimiter: '%' }))
   },
-}
-
-function sqlOperateRes (sql) {
-  return new Promise((resolve, reject) => {
-    pool.getConnection(function(err, connection) {
-      if (err) {
-        reject('连接MySQL出错')
-      } else {
-        connection.query(sql, function(err, result) {
-          connection.release();
-          if (err) {
-            reject('查询数据出错')
-          } else {
-            resolve(result)
-          }
-        });
-      }
-    });
-  })
 }
 
 module.exports = indexMapper

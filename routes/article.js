@@ -24,4 +24,15 @@ router.post('/publish', async function(req, res, next) {
   }
 });
 
+// 删除文章
+router.post('/delete', async function (req, res, next) {
+  const { userId: user_id, articleId: article_id } = req.body
+  const result = await articleService.articleDelete(user_id, article_id)
+  if (result) {
+    res.json({ code: '000000', msg: '文章删除成功'})
+  } else {
+    res.json({ code: '000000', msg: '文章删除失败'})
+  }
+})
+
 module.exports = router;

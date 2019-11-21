@@ -1,4 +1,5 @@
 {
   "articlePublishSQL": "insert into article (user_id, title, description, text) values('<%= user_id %>','<%= title %>','<%= description %>','<%= text %>')",
-  "articleQueryByUserIdSQL": "select * from article where user_id = '<%= user_id %>'"
+  "articleQueryByUserIdSQL": "select * from article where user_id = '<%= user_id %>'",
+  "articleDeleteSQL": "delete from article where user_id='<%= user_id %>' and article_id='<%= article_id %>'"
 }

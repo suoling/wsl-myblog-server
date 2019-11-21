@@ -6,6 +6,9 @@ const articleService = {
   },
   articlePublish (user_id, title, description, text) {
     return articleMapper.articlePublish(user_id, title, description, text)
+  },
+  articleDelete (user_id, article_id) {
+    return articleMapper.articleDelete(user_id, article_id)
   }
 }
 
