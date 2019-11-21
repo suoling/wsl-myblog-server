@@ -9,6 +9,9 @@ const articleService = {
   },
   articleDelete (user_id, article_id) {
     return articleMapper.articleDelete(user_id, article_id)
+  },
+  articleQueryById (user_id, article_id) {
+    return articleMapper.articleQueryById(user_id, article_id)
   }
 }
 

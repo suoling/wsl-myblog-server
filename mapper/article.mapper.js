@@ -11,7 +11,10 @@ const articleMapper = {
   },
   articleDelete (user_id, article_id) {
     return sqlOperateRes(ejs.render(json.articleDeleteSQL, { user_id, article_id }, { delimiter: '%' }))
-  }
+  },
+  articleQueryById (user_id, article_id) {
+    return sqlOperateRes(ejs.render(json.articleQueryByIdSQL, { user_id, article_id }, { delimiter: '%' }))
+  },
 }
 
 module.exports = articleMapper

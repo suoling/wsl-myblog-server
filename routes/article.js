@@ -35,4 +35,15 @@ router.post('/delete', async function (req, res, next) {
   }
 })
 
+// 查询指定的文章
+router.post('/queryById', async function (req, res, next) {
+  const { userId: user_id, articleId: article_id } = req.body
+  const result = await articleService.articleQueryById(user_id, article_id)
+  if (result) {
+    res.json({ code: '000000', msg: '文章查询成功', data: result})
+  } else {
+    res.json({ code: '000000', msg: '文章查询失败'})
+  }
+})
+
 module.exports = router;
