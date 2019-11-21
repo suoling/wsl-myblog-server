@@ -1,11 +1,7 @@
 extends layout
 block content
     h1 更新测试用户资料
-    form(method='post', action='updateTest')
-        div.form-row
-            label
-                span id:
-                input(type='text',name='id')
+    form(method='post', action='update?id=13')
         div.form-row
             label
                 span name:

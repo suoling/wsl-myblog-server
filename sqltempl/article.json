@@ -1,0 +1,4 @@
+{
+  "articlePublishSQL": "insert into article (user_id, title, description, text) values('<%= user_id %>','<%= title %>','<%= description %>','<%= text %>')",
+  "articleQueryByUserIdSQL": "select * from article where user_id = '<%= user_id %>'"
+}

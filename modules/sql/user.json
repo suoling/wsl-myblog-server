@@ -1,5 +1,0 @@
-{
-  "insertSQL": "insert into user (phone, pass) values('<%= phone %>','<%= pass %>')",
-  "selectPhoneSQL": "select * from user where phone = '<%= phone %>'",
-  "selectSQL": "select * from user where phone = '<%= phone %>' and pass = '<%= pass %>' "
-}
