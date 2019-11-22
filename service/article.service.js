@@ -12,6 +12,9 @@ const articleService = {
   },
   articleQueryById (user_id, article_id) {
     return articleMapper.articleQueryById(user_id, article_id)
+  },
+  articleUpdateById (user_id, article_id, title, description, text) {
+    return articleMapper.articleUpdateById(user_id, article_id, title, description, text)
   }
 }
 

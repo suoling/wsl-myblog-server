@@ -1,6 +1,7 @@
 const pool = require('./pool')
 
 function sqlOperateRes (sql) {
+  console.log('sql:', sql)
   return new Promise((resolve, reject) => {
     pool.getConnection(function(err, connection) {
       if (err) {

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const articleService = require('../service/article.service')
 
-// 查询文章列表
+// 文章列表
 router.post('/query', async function(req, res, next) {
   const { userId: user_id } = req.body
   const result = await articleService.articleQueryByUserId(user_id)
@@ -13,7 +13,7 @@ router.post('/query', async function(req, res, next) {
   }
 });
 
-// 写文章
+// 文章发布
 router.post('/publish', async function(req, res, next) {
   const { userId: user_id, title, desc: description, text } = req.body
   const result = await articleService.articlePublish(user_id, title, description, text)
@@ -24,7 +24,7 @@ router.post('/publish', async function(req, res, next) {
   }
 });
 
-// 删除文章
+// 文章删除
 router.post('/delete', async function (req, res, next) {
   const { userId: user_id, articleId: article_id } = req.body
   const result = await articleService.articleDelete(user_id, article_id)
@@ -35,7 +35,7 @@ router.post('/delete', async function (req, res, next) {
   }
 })
 
-// 查询指定的文章
+// 文章查询
 router.post('/queryById', async function (req, res, next) {
   const { userId: user_id, articleId: article_id } = req.body
   const result = await articleService.articleQueryById(user_id, article_id)
@@ -43,6 +43,18 @@ router.post('/queryById', async function (req, res, next) {
     res.json({ code: '000000', msg: '文章查询成功', data: result})
   } else {
     res.json({ code: '000000', msg: '文章查询失败'})
+  }
+})
+
+// 文章编辑
+router.post('/edit', async function (req, res, next) {
+  console.log(req.body)
+  const { userId: user_id, articleId: article_id, title, desc: description, text } = req.body
+  const result = await articleService.articleUpdateById(user_id, article_id, title, description, text)
+  if (result) {
+    res.json({ code: '000000', msg: '文章编辑成功'})
+  } else {
+    res.json({ code: '000000', msg: '文章编辑失败'})
   }
 })
 

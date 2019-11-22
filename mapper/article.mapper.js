@@ -15,6 +15,9 @@ const articleMapper = {
   articleQueryById (user_id, article_id) {
     return sqlOperateRes(ejs.render(json.articleQueryByIdSQL, { user_id, article_id }, { delimiter: '%' }))
   },
+  articleUpdateById (user_id, article_id, title, description, text) {
+    return sqlOperateRes(ejs.render(json.articleUpdateByIdSQL, { user_id, article_id, title, description, text }, { delimiter: '%' }))
+  }
 }
 
 module.exports = articleMapper
