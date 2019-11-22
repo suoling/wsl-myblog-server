@@ -1,4 +1,18 @@
 const pool = require('./pool')
+const ejs = require('ejs')
+
+
+function sqlTemplate () {
+  return new Proxy({}, {
+    get(target, propKey, receiver) {
+      return function (params) {
+        let arr = propKey.split('_')
+        let json = require(`../sqltempl/${arr[0]}.json`)
+        return sqlOperateRes(ejs.render(json[arr[1]], params, { delimiter: '%' }))
+      }
+    }
+  });
+}
 
 function sqlOperateRes (sql) {
   console.log('sql:', sql)
@@ -20,4 +34,4 @@ function sqlOperateRes (sql) {
   })
 }
 
-module.exports = sqlOperateRes
+module.exports = sqlTemplate

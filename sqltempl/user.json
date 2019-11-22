@@ -1,5 +1,6 @@
 {
   "userRegisterSQL": "insert into user (phone, pass) values('<%= phone %>','<%= pass %>')",
   "userIsRegisterSQL": "select * from user where phone = '<%= phone %>'",
-  "userLoginSQL": "select * from user where phone = '<%= phone %>' and pass = '<%= pass %>' "
+  "userLoginSQL": "select * from user where phone = '<%= phone %>' and pass = '<%= pass %>' ",
+  "userQueryAll":"select * from user"
 }
