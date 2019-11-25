@@ -4,17 +4,17 @@ const articleService = {
   articleQueryByUserId (user_id) {
     return articleMapper.articleQueryByUserId(user_id)
   },
-  articlePublish (user_id, title, description, text) {
-    return articleMapper.articlePublish(user_id, title, description, text)
+  articlePublish (user_id, title, description, md_content) {
+    return articleMapper.articlePublish(user_id, title, description, md_content)
   },
-  articleDelete (user_id, article_id) {
-    return articleMapper.articleDelete(user_id, article_id)
+  articleDelete (id, user_id) {
+    return articleMapper.articleDelete(id, user_id)
   },
-  articleQueryById (user_id, article_id) {
-    return articleMapper.articleQueryById(user_id, article_id)
+  articleQueryById (id, user_id) {
+    return articleMapper.articleQueryById(id, user_id)
   },
-  articleUpdateById (user_id, article_id, title, description, text) {
-    return articleMapper.articleUpdateById(user_id, article_id, title, description, text)
+  articleUpdateById (id, user_id, title, description, md_content) {
+    return articleMapper.articleUpdateById(id, user_id, title, description, md_content)
   }
 }
 

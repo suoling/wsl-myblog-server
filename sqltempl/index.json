@@ -1,7 +1,7 @@
 {
-  "queryAllSQL": "select * from test_user",
-  "insertSQL": "insert into test_user (name, age, address) values('<%= name %>','<%= age %>','<%= address %>')",
-  "deleteByIdSQL": "delete from test_user where id='<%= id %>'",
-  "updateByIdSQL":"update test_user set name='<%= name %>', age='<%= age %>', address='<%= address %>' WHERE id='<%= id %>'",
-  "queryByIdSQL": "select * from test_user where id='<%= id %>'"
+  "queryAllSQL": "select * from test",
+  "insertSQL": "insert into test (name, age, address) values('<%= name %>','<%= age %>','<%= address %>')",
+  "deleteByIdSQL": "delete from test where id='<%= id %>'",
+  "updateByIdSQL":"update test set name='<%= name %>', age='<%= age %>', address='<%= address %>' WHERE id='<%= id %>'",
+  "queryByIdSQL": "select * from test where id='<%= id %>'"
 }

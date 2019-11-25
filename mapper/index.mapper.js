@@ -1,22 +1,20 @@
-const sqlOperateRes = require('../libs/sqlOperateRes')
-const ejs = require('ejs')
-const json = require('../sqltempl/index.json')
+const sqlTemplate = require('../libs/sqlTemplate')
 
 const indexMapper = {
   queryAll () {
-    return sqlOperateRes(ejs.render(json.queryAllSQL, { delimiter: '%' }))
+    return sqlTemplate().test_queryAllSQL()
   },
   insert (name, age, address) {
-    return sqlOperateRes(ejs.render(json.insertSQL, { name, age, address }, { delimiter: '%' }))
+    return sqlTemplate().test_insertSQL({ name, age, address })
   },
   deleteById (id) {
-    return sqlOperateRes(ejs.render(json.deleteByIdSQL, { id }, { delimiter: '%' }))
+    return sqlTemplate().test_deleteByIdSQL({ id })
   },
   updateById (id, name, age, address) {
-    return sqlOperateRes(ejs.render(json.updateByIdSQL, { name, age, address, id }, { delimiter: '%' }))
+    return sqlTemplate().test_updateByIdSQL({ name, age, address, id })
   },
   queryById (id) {
-    return sqlOperateRes(ejs.render(json.queryByIdSQL, { id }, { delimiter: '%' }))
+    return sqlTemplate().test_queryByIdSQL({ id })
   },
 }
 

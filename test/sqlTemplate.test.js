@@ -1,6 +1,6 @@
-const sqlTemplate = require('../libs/sqlOperateRes')
+const sqlTemplate = require('../libs/sqlTemplate')
 
 
-sqlTemplate().user_userQueryAll().then((data)=>{
+sqlTemplate().user_userQueryAllSQL().then((data)=>{
   console.log(data)
 })

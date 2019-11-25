@@ -1,16 +1,14 @@
-const sqlOperateRes = require('../libs/sqlOperateRes')
-const ejs = require('ejs')
-const json = require('../sqltempl/user.json')
+const sqlTemplate = require('../libs/sqlTemplate')
 
 const userMapper = {
   userRegister (phone, pass) {
-    return sqlOperateRes(ejs.render(json.userRegisterSQL, { phone, pass }, { delimiter: '%' }))
+    return sqlTemplate().user_userRegisterSQL({ phone, pass })
   },
   userIsRegister (phone) {
-    return sqlOperateRes(ejs.render(json.userIsRegisterSQL, { phone }, { delimiter: '%' }))
+    return sqlTemplate().user_userIsRegisterSQL({ phone })
   },
   userLogin (phone, pass) {
-    return sqlOperateRes(ejs.render(json.userLoginSQL, { phone, pass }, { delimiter: '%' }))
+    return sqlTemplate().user_userLoginSQL({ phone, pass })
   }
 }
 

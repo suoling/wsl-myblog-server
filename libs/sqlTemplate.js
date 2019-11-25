@@ -8,13 +8,13 @@ function sqlTemplate () {
       return function (params) {
         let arr = propKey.split('_')
         let json = require(`../sqltempl/${arr[0]}.json`)
-        return sqlOperateRes(ejs.render(json[arr[1]], params, { delimiter: '%' }))
+        return sqlOperaRes(ejs.render(json[arr[1]], params, { delimiter: '%' }))
       }
     }
   });
 }
 
-function sqlOperateRes (sql) {
+function sqlOperaRes (sql) {
   console.log('sql:', sql)
   return new Promise((resolve, reject) => {
     pool.getConnection(function(err, connection) {

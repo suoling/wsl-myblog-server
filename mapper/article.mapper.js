@@ -1,22 +1,20 @@
-const sqlOperateRes = require('../libs/sqlOperateRes')
-const ejs = require('ejs')
-const json = require('../sqltempl/article.json')
+const sqlTemplate = require('../libs/sqlTemplate')
 
 const articleMapper = {
   articleQueryByUserId (user_id) {
-    return sqlOperateRes(ejs.render(json.articleQueryByUserIdSQL, { user_id }, { delimiter: '%' }))
+    return sqlTemplate().article_articleQueryByUserIdSQL({user_id})
   },
-  articlePublish (user_id, title, description, text) {
-    return sqlOperateRes(ejs.render(json.articlePublishSQL, { user_id, title, description, text }, { delimiter: '%' }))
+  articlePublish (user_id, title, description, md_content) {
+    return sqlTemplate().article_articlePublishSQL({user_id, title, description, md_content})
   },
-  articleDelete (user_id, article_id) {
-    return sqlOperateRes(ejs.render(json.articleDeleteSQL, { user_id, article_id }, { delimiter: '%' }))
+  articleDelete (id, user_id) {
+    return sqlTemplate().article_articleDeleteSQL({id, user_id})
   },
-  articleQueryById (user_id, article_id) {
-    return sqlOperateRes(ejs.render(json.articleQueryByIdSQL, { user_id, article_id }, { delimiter: '%' }))
+  articleQueryById (id, user_id) {
+    return sqlTemplate().article_articleQueryByIdSQL({id, user_id})
   },
-  articleUpdateById (user_id, article_id, title, description, text) {
-    return sqlOperateRes(ejs.render(json.articleUpdateByIdSQL, { user_id, article_id, title, description, text }, { delimiter: '%' }))
+  articleUpdateById (id, user_id, title, description, md_content) {
+    return sqlTemplate().article_articleUpdateByIdSQL({id, user_id, title, description, md_content})
   }
 }
 

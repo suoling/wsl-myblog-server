@@ -1,7 +1,7 @@
 {
-  "articlePublishSQL": "insert into article (user_id, title, description, text) values('<%= user_id %>','<%= title %>','<%= description %>','<%= text %>')",
+  "articlePublishSQL": "insert into article (user_id, title, description, md_content) values('<%= user_id %>','<%= title %>','<%= description %>','<%= md_content %>')",
   "articleQueryByUserIdSQL": "select * from article where user_id = '<%= user_id %>'",
-  "articleDeleteSQL": "delete from article where user_id='<%= user_id %>' and article_id='<%= article_id %>'",
-  "articleQueryByIdSQL": "select * from article where user_id = '<%= user_id %>' and article_id='<%= article_id %>'",
-  "articleUpdateByIdSQL": "update article set title='<%= title %>', description='<%= description %>', text='<%= text %>' where user_id = '<%= user_id %>' and article_id='<%= article_id %>'"
+  "articleDeleteSQL": "delete from article where id='<%= id %>' and user_id='<%= user_id %>'",
+  "articleQueryByIdSQL": "select * from article where id='<%= id %>' and user_id='<%= user_id %>'",
+  "articleUpdateByIdSQL": "update article set title='<%= title %>', description='<%= description %>', md_content='<%= md_content %>' where id='<%= id %>' and user_id='<%= user_id %>'"
 }
