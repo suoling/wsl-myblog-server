@@ -8,6 +8,7 @@
 
 const express = require('express');
 const router = express.Router();
+const codeMap = require('../const/codeMap');
 const indexService = require('../service/index.service')
 
 // 首页渲染
@@ -17,18 +18,22 @@ router.get('/', function(req, res, next) {
 
 // 查询所有数据
 router.get('/queryall', async function(req, res, next) {
-  const result = await indexService.queryAll()
-  if (result) {
-    res.json({ res: result })
+  try {
+    const result = await indexService.queryAll()
+    res.json({ code: codeMap.success, res: result })
+  } catch (err) {
+    res.json({ code: codeMap.error, msg: '查询数据失败' })
   }
 });
 
 // 插入数据
 router.get('/add', async function(req, res, next) {
   const { name, age, address } = req.query
-  const result = await indexService.insert(name, age, address)
-  if (result) {
-    res.json({ code: '000000', msg: '添加成功' })
+  try {
+    await indexService.insert(name, age, address)
+    res.json({ code: codeMap.success, msg: '添加成功' })
+  } catch (err) {
+    res.json({ code: codeMap.error, msg: '添加成功' })
   }
 });
 

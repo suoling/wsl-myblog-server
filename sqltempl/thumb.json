@@ -1,0 +1,5 @@
+{
+  "thumbQuerySQL": "select * from thumb where article_id='<%= article_id %>'",
+  "thumbSQL": "insert into thumb (user_id, article_id) values('<%= user_id %>','<%= article_id %>')",
+  "thumbCancelSQL": "delete from thumb where user_id='<%= user_id %>' and article_id='<%= article_id %>'"
+}
