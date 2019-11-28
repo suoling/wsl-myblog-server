@@ -46,7 +46,7 @@ router.post('/login', async function(req, res, next) {
   try {
     const result = await userService.userLogin(phone, pass)
     if (result && result.length > 0) {
-      res.json({ code: codeMap.success, msg: '登陆成功', login_id: result[0].id })
+      res.json({ code: codeMap.success, msg: '登陆成功', login_id: result[0].id,  phone: result[0].phone })
     } else if (result && result.length == 0) {
       res.json({ code: codeMap.error, msg: '密码输入错误' })
     }

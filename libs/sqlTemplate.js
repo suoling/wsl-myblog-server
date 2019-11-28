@@ -15,7 +15,7 @@ function sqlTemplate () {
 }
 
 function sqlOperaRes (sql) {
-  console.log('sql:', sql)
+  // console.log('sql:', sql)
   return new Promise((resolve, reject) => {
     pool.getConnection(function(err, connection) {
       if (err) {
