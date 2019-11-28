@@ -7,8 +7,8 @@ const articleMapper = {
   articleQueryByUserId (user_id) {
     return sqlTemplate().article_articleQueryByUserIdSQL({ user_id })
   },
-  articlePublish (user_id, title, description, md_content) {
-    return sqlTemplate().article_articlePublishSQL({ user_id, title, description, md_content })
+  articlePublish (user_id, title, description, md_content, html_code) {
+    return sqlTemplate().article_articlePublishSQL({ user_id, title, description, md_content, html_code })
   },
   articleDelete (id) {
     return sqlTemplate().article_articleDeleteSQL({ id })
@@ -16,8 +16,8 @@ const articleMapper = {
   articleQueryById (id) {
     return sqlTemplate().article_articleQueryByIdSQL({ id })
   },
-  articleUpdateById (id, title, description, md_content) {
-    return sqlTemplate().article_articleUpdateByIdSQL({ id, title, description, md_content })
+  articleUpdateById (id, title, description, md_content, html_code) {
+    return sqlTemplate().article_articleUpdateByIdSQL({ id, title, description, md_content, html_code })
   }
 }
 

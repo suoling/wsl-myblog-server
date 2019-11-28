@@ -23,6 +23,7 @@ router.post('/', async function(req, res, next) {
 // 检测手机号是否被注册
 router.post('/check', async function(req, res, next) {
   const { phone } = req.body;
+  console.log('phone:', phone)
   try {
     const result = await userService.userIsRegister(phone)
     if (result && result.length > 0) {
@@ -45,7 +46,7 @@ router.post('/login', async function(req, res, next) {
   try {
     const result = await userService.userLogin(phone, pass)
     if (result && result.length > 0) {
-      res.json({ code: codeMap.success, msg: '登陆成功', user_id: result[0].id })
+      res.json({ code: codeMap.success, msg: '登陆成功', login_id: result[0].id })
     } else if (result && result.length == 0) {
       res.json({ code: codeMap.error, msg: '密码输入错误' })
     }
