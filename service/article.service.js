@@ -4,13 +4,13 @@ const cheerio = require('cheerio');
 const transfer = require('../const/transfer');
 
 const articleService = {
-  async articleQueryAll (user_id) {
-    const result = await articleMapper.articleQueryAll(user_id);
-    return resultOpera(result, user_id)
+  async articleQueryAll (type, user_id, page_size, page_num) {
+    const result = await articleMapper.articleQueryAll(page_size, page_num);
+    return resultOpera(result, user_id, type);
   },
-  async articleQueryByUserId (user_id) {
-    const result = await articleMapper.articleQueryByUserId(user_id);
-    return resultOpera(result, user_id)
+  async articleQueryByUserId (type, user_id, page_size, page_num) {
+    const result = await articleMapper.articleQueryByUserId(user_id, page_size, page_num);
+    return resultOpera(result, user_id, type);
   },
   articlePublish (user_id, title, md_content, html_code) {
     const description = descOpera(html_code);
@@ -19,10 +19,9 @@ const articleService = {
   articleDelete (id) {
     return articleMapper.articleDelete(id)
   },
-  async articleQueryById (id) {
-    const result = await articleMapper.articleQueryById(id);
-    const articleDetail = Object.assign({}, result[0], { md_content: transfer(result[0].md_content) });
-    return articleDetail
+  async articleDetail (id) {
+    const result = await articleMapper.articleDetail(id);
+    return Object.assign({}, result[0], { md_content: transfer(result[0].md_content) });
   },
   articleUpdateById (id, title, md_content, html_code) {
     const description = descOpera(html_code);
@@ -30,7 +29,7 @@ const articleService = {
   }
 }
 
-async function resultOpera (result, login_id) {
+async function resultOpera (result, login_id, type) {
   for (let i = 0, len = result.length; i < len; i++) {
     // 将html字符串中个别特殊的字符进行反转义
     result[i].html_code = transfer(result[i].html_code);
@@ -42,7 +41,17 @@ async function resultOpera (result, login_id) {
     const thumbFlag = await thumbService.thumbFlag(login_id, result[i].id);
     result[i].thumb_flag = thumbFlag[0].count; // 1 代表已点赞。0 代表未点赞
   }
-  return result
+  // 获取文章列表总条数
+  let total_count;
+  if (type === 'all') {
+    total_count = await articleMapper.articleQueryAllCount(login_id);
+  } else if (type === 'mine') {
+    total_count = await articleMapper.articleQueryByUserIdCount(login_id);
+  }
+  return {
+    articleList: result,
+    totalCount: total_count[0].count
+  }
 }
 
 function descOpera (html_code) {

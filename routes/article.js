@@ -26,15 +26,15 @@ router.post('/upload', upload.array('image', 12), function (req, res, next) {
 // 文章列表
 router.post('/query', async function(req, res, next) {
   const { login_id } = req.headers;
-  const { type } = req.body;
+  const { type, page_size, page_num } = req.body;
   try {
     let result;
     if (type === 'all') {
-      result = await articleService.articleQueryAll(login_id);
+      result = await articleService.articleQueryAll(type, login_id, page_size, page_num);
     } else if (type === 'mine') {
-      result = await articleService.articleQueryByUserId(login_id);
+      result = await articleService.articleQueryByUserId(type, login_id, page_size, page_num);
     }
-    res.json({ code: codeMap.success, msg: '文章列表查询成功', articleList: result })
+    res.json({ code: codeMap.success, msg: '文章列表查询成功', result: result })
   } catch (err) {
     res.json({ code: codeMap.error, msg: '文章列表查询失败' })
   }
@@ -44,7 +44,7 @@ router.post('/query', async function(req, res, next) {
 router.post('/queryDetail', async function (req, res, next) {
   const { id} = req.body;
   try {
-    const result = await articleService.articleQueryById(id);
+    const result = await articleService.articleDetail(id);
     res.json({ code: codeMap.success, msg: '文章查询成功', articleDetail: result})
   } catch (err) {
     res.json({ code: codeMap.error, msg: '文章查询失败'})
