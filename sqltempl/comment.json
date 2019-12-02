@@ -1,0 +1,4 @@
+{
+  "commentQuerySQL": "select * from comment where user_id='<%= user_id %>' and article_id='<%= article_id %>'",
+  "commentAddSQL": "insert into comment(user_id, article_id, prev_id, content) values('<%= user_id %>','<%= article_id %>','<%= prev_id %>','<%= content %>')"
+}
