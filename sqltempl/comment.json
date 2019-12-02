@@ -1,4 +1,6 @@
 {
-  "commentQuerySQL": "select * from comment where user_id='<%= user_id %>' and article_id='<%= article_id %>'",
-  "commentAddSQL": "insert into comment(user_id, article_id, prev_id, content) values('<%= user_id %>','<%= article_id %>','<%= prev_id %>','<%= content %>')"
+  "commentQueryAllSQL": "select * from comment where article_id='<%= article_id %>'",
+  "commentQueryByArticleIdSQL": "select count(*) as count from comment where article_id='<%= article_id %>'",
+  "commentAddSQL": "insert into comment(user_id, article_id, prev_id, content) values('<%= user_id %>','<%= article_id %>','<%= prev_id %>','<%= content %>')",
+  "commentDeleteSQL": "delete from comment where id='<%= id %>'"
 }

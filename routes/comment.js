@@ -5,11 +5,11 @@ const commentService = require('../service/comment.service');
 
 // 评论列表
 router.post('/', async function (req, res, next) {
-    const { user_id, article_id } = req.body;
+    const { article_id } = req.body;
     try {
-        const result = await commentService.commentQuery(user_id, article_id);
+        const result = await commentService.commentQueryAll(article_id);
         res.json({ code: codeMap.success, msg: '评论列表查询成功', commentList: result});
-    } catch (res) {
+    } catch (err) {
         res.json({ code: codeMap.error, msg: '评论列表查询失败'});
     }
 });
