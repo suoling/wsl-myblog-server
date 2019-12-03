@@ -1,5 +1,5 @@
 const articleMapper = require('../mapper/article.mapper');
-const thumbService = require('../service/thumb.service');
+const articleThumbService = require('./articleThumb.service');
 const commentService = require('../service/comment.service');
 const cheerio = require('cheerio');
 const transfer = require('../const/transfer');
@@ -31,31 +31,31 @@ const articleService = {
 }
 
 async function resultOpera (result, login_id, type) {
-//   await result.map(async item => {
-//     // 将html字符串中个别特殊的字符进行反转义
-//     item.html_code = transfer(item.html_code);
-//     item.description = transfer(item.description);
-//     // 获取文章的点赞数
-//     const thumbCount = await thumbService.thumbQuery(item.id);
-//     item.thumb_count = thumbCount[0].count;
-//     // 判断用户是否已点赞
-//     const thumbFlag = await thumbService.thumbFlag(login_id, item.id);
-//     item.thumb_flag = thumbFlag[0].count; // 1 代表已点赞。0 代表未点赞
-//     // 获取文章的评论数
-//     const commentCount = await commentService.commentQueryByArticleId(item.id);
-//     console.log(item.id, commentCount)
-//     item.comment_count = commentCount[0].count;
-//     console.log(item.id, commentCount, item.comment_count)
-//   });
+  // await result.map(async item => {
+  //   // 将html字符串中个别特殊的字符进行反转义
+  //   item.html_code = transfer(item.html_code);
+  //   item.description = transfer(item.description);
+  //   // 获取文章的点赞数
+  //   const thumbCount = await articleThumbService.articleThumbQuery(item.id);
+  //   item.thumb_count = thumbCount[0].count;
+  //   // 判断用户是否已点赞
+  //   const thumbFlag = await articleThumbService.articleThumbFlag(login_id, item.id);
+  //   item.thumb_flag = thumbFlag[0].count; // 1 代表已点赞。0 代表未点赞
+  //   // 获取文章的评论数
+  //   const commentCount = await commentService.commentQueryByArticleId(item.id);
+  //   console.log(item.id, commentCount)
+  //   item.comment_count = commentCount[0].count;
+  //   console.log(item.id, commentCount, item.comment_count)
+  // });
   for (let i = 0, len = result.length; i < len; i++) {
     // 将html字符串中个别特殊的字符进行反转义
     result[i].html_code = transfer(result[i].html_code);
     result[i].description = transfer(result[i].description);
     // 获取文章的点赞数
-    const thumbCount = await thumbService.thumbQuery(result[i].id);
+    const thumbCount = await articleThumbService.articleThumbQuery(result[i].id);
     result[i].thumb_count = thumbCount[0].count;
     // 判断用户是否已点赞
-    const thumbFlag = await thumbService.thumbFlag(login_id, result[i].id);
+    const thumbFlag = await articleThumbService.articleThumbFlag(login_id, result[i].id);
     result[i].thumb_flag = thumbFlag[0].count; // 1 代表已点赞。0 代表未点赞
     // 获取文章的评论数
     const commentCount = await commentService.commentQueryByArticleId(result[i].id);
@@ -77,8 +77,7 @@ async function resultOpera (result, login_id, type) {
 function descOpera (html_code) {
   const $ = cheerio.load(html_code);
   const pEleText = $('p').text();
-  const description = pEleText.length > 300 ? `${pEleText.slice(0, 300)}...` : `${pEleText}...`;
-  return description
+  return pEleText.length > 300 ? `${pEleText.slice(0, 300)}...` : `${pEleText}...`;
 }
 
 module.exports = articleService;

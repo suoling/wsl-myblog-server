@@ -1,0 +1,6 @@
+{
+  "commentThumbQuerySQL": "select count(*) as count from comment_thumb where comment_id='<%= comment_id %>'",
+  "commentThumbFlagSQL": "select count(*) as count from comment_thumb where user_id='<%= user_id %>' and comment_id='<%= comment_id %>'",
+  "commentThumbSQL": "insert into comment_thumb (user_id, comment_id) values('<%= user_id %>','<%= comment_id %>')",
+  "commentThumbCancelSQL": "delete from comment_thumb where user_id='<%= user_id %>' and comment_id='<%= comment_id %>'"
+}
