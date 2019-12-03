@@ -13,18 +13,36 @@ const commentService = {
             result[i].thumb_flag = thumbFlag[0].count; // 1 代表已点赞。0 代表未点赞
         }
         // 主评论的列表
-        const commentArr = result.filter(item => item.prev_id === 0)
+        const commentArr = result.filter(item => item.prev_id === 0);
         commentArr.forEach(item =>{
-            item.children = []
+            item.children = [];
+            item.reply_user = ''
         });
         // 回复的列表
-        result.filter(item => item.prev_id !== 0)
-            .forEach(childItem => {
-            let parentNode = commentArr.find(parentItem => {
-                return parentItem.id === childItem.prev_id
+        const replyArr = result.filter(item => item.prev_id !== 0);
+
+        replyArr.forEach(replyItem => {
+            let parentNode = result.find(parentItem => {
+                return parentItem.id === replyItem.prev_id
             });
-            if (parentNode) {
-                parentNode.children.push(childItem)
+            let existFlag = commentArr.findIndex(item => {
+                return item.id === parentNode.id
+            });
+            if (existFlag !== -1) {
+                parentNode.children.push(replyItem);
+                replyItem.reply_user = parentNode.user_id
+            } else {
+                commentArr.forEach(item => {
+                    if (item.children.length) {
+                        const existChildFlag = item.children.findIndex(childItem => {
+                            return childItem.id === replyItem.prev_id
+                        });
+                        if (existChildFlag !== -1) {
+                            item.children.push(replyItem);
+                            replyItem.reply_user = item.children[existChildFlag].user_id
+                        }
+                    }
+                })
             }
         });
         return commentArr
@@ -34,7 +52,10 @@ const commentService = {
     },
     commentAdd (user_id, article_id, prev_id, content) {
         return commentMapper.commentAdd(user_id, article_id, prev_id, content)
-    }
+    },
+    commentDelete (comment_id) {
+        return commentMapper.commentDelete(comment_id)
+    },
 };
 
 module.exports = commentService;

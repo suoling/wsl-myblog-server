@@ -21,8 +21,19 @@ router.post('/add', async function (req, res, next) {
     try {
         await commentService.commentAdd(user_id, article_id, prev_id, content);
         res.json({ code: codeMap.success, msg: '评论成功'});
-    } catch (res) {
+    } catch (err) {
         res.json({ code: codeMap.error, msg: '评论失败'});
+    }
+});
+
+// 删除评论
+router.post('/delete', async function (req, res, next) {
+    const { comment_id } = req.body;
+    try {
+        await commentService.commentDelete(comment_id);
+        res.json({ code: codeMap.success, msg: '评论删除成功'});
+    } catch (err) {
+        res.json({ code: codeMap.success, msg: '评论删除失败'});
     }
 });
 
