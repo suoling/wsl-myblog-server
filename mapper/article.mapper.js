@@ -1,10 +1,12 @@
-const sqlTemplate = require('../libs/sqlTemplate')
+const sqlTemplate = require('../libs/sqlTemplate');
 
 const articleMapper = {
   articleQueryAll (page_size, page_num) {
     const start = page_size * page_num;
     const end = page_num;
-    return sqlTemplate().article_articleQueryAllSQL({ start, end })
+    console.log(page_size, page_num);
+    const result = sqlTemplate().article_articleQueryAllSQL({ start, end });
+    return result
   },
   articleQueryAllCount () {
     return sqlTemplate().article_articleQueryAllCountSQL()

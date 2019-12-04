@@ -10,6 +10,7 @@ const articleRouter = require('./routes/article');
 const articleThumbRouter = require('./routes/articleThumb');
 const commentRouter = require('./routes/comment');
 const commentThumbRouter = require('./routes/commentThumb');
+const articleCollectRouter = require('./routes/articleCollect')
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/article', articleRouter);
 app.use('/article/thumb', articleThumbRouter);
 app.use('/comment', commentRouter);
 app.use('/comment/thumb', commentThumbRouter);
+app.use('/article/collect', articleCollectRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

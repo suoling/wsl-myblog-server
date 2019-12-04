@@ -1,6 +1,7 @@
 const articleMapper = require('../mapper/article.mapper');
 const articleThumbService = require('./articleThumb.service');
-const commentService = require('../service/comment.service');
+const articleCollectService = require('./articleCollect.service');
+const commentService = require('./comment.service');
 const cheerio = require('cheerio');
 const transfer = require('../const/transfer');
 
@@ -60,6 +61,9 @@ async function resultOpera (result, login_id, type) {
     // 获取文章的评论数
     const commentCount = await commentService.commentQueryByArticleId(result[i].id);
     result[i].comment_count = commentCount[0].count;
+    // 判断用户是否已收藏
+    const collectFlag = await articleCollectService.articleCollectFlag(login_id, result[i].id);
+    result[i].collect_flag = collectFlag[0].count; // 1 代表已收藏。0 代表未收藏
   }
   // 获取文章列表总条数
   let total_count;

@@ -1,0 +1,7 @@
+{
+  "articleCollectQuerySQL": "select * from article_collect where user_id='<%= user_id %>' limit <%= start %>, <%= end %>",
+  "articleCollectFlagSQL": "select count(*) as count from article_collect where user_id='<%= user_id %>' and article_id='<%= article_id %>'",
+  "articleCollectQueryCountSQL": "select count(*) as count from article_collect where user_id='<%= user_id %>'",
+  "articleCollectSQL": "insert into article_collect (user_id, article_id) values('<%= user_id %>','<%= article_id %>')",
+  "articleCollectCancelSQL": "delete from article_collect where user_id='<%= user_id %>' and article_id='<%= article_id %>'"
+}
