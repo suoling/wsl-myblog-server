@@ -1,10 +1,14 @@
 const commentMapper = require('../mapper/comment.mapper');
+const userService = require('./user.service');
 const commentThumbService = require('./commentThumb.service');
 
 const commentService = {
     async commentQueryAll (article_id, login_id) {
         const result = await commentMapper.commentQueryAll(article_id);
         for (let i = 0, len = result.length; i < len; i++) {
+            // 获取评论的用户昵称
+            const userData = await userService.userQueryByUserId(result[i].user_id);
+            result[i].nickname = userData[0].nickname;
             // 获取评论的点赞数
             const thumbCount = await commentThumbService.commentThumbQuery(result[i].id);
             result[i].thumb_count = thumbCount[0].count;
@@ -30,7 +34,7 @@ const commentService = {
             });
             if (existFlag !== -1) {
                 parentNode.children.push(replyItem);
-                replyItem.reply_user = parentNode.user_id
+                replyItem.reply_user = parentNode.nickname
             } else {
                 commentArr.forEach(item => {
                     if (item.children.length) {
@@ -39,7 +43,7 @@ const commentService = {
                         });
                         if (existChildFlag !== -1) {
                             item.children.push(replyItem);
-                            replyItem.reply_user = item.children[existChildFlag].user_id
+                            replyItem.reply_user = item.children[existChildFlag].nickname
                         }
                     }
                 })

@@ -8,12 +8,12 @@ const crypto = require('crypto');
 // 用户注册
 router.post('/', async function(req, res, next) {
   const param = req.body;
-  const hash = crypto.createHash('md5')
-  hash.update(param.pass)
-  param.pass = hash.digest('hex')
-  const { phone, pass } = param
+  const hash = crypto.createHash('md5');
+  hash.update(param.pass);
+  param.pass = hash.digest('hex');
+  const { phone, nickname, pass } = param;
   try {
-    await userService.userRegister(phone, pass)
+    await userService.userRegister(phone, nickname, pass);
     res.json({ code: codeMap.success, msg: '注册成功' })
   } catch (err) {
     res.json({ code: codeMap.error, msg: '注册失败' })
@@ -23,12 +23,12 @@ router.post('/', async function(req, res, next) {
 // 检测手机号是否被注册
 router.post('/check', async function(req, res, next) {
   const { phone } = req.body;
-  console.log('phone:', phone)
+  console.log('phone:', phone);
   try {
-    const result = await userService.userIsRegister(phone)
+    const result = await userService.userIsRegister(phone);
     if (result && result.length > 0) {
       res.json({ code: codeMap.success, msg: '该手机号已被注册', exist: true })
-    } else if (result && result.length == 0) {
+    } else if (result && result.length === 0) {
       res.json({ code: codeMap.success, msg: '该手机号未被注册', exist: false })
     }
   } catch (err) {
@@ -39,15 +39,21 @@ router.post('/check', async function(req, res, next) {
 // 用户登陆
 router.post('/login', async function(req, res, next) {
   const param = req.body;
-  const hash = crypto.createHash('md5')
-  hash.update(param.pass)
-  param.pass = hash.digest('hex')
-  const { phone, pass } = param
+  const hash = crypto.createHash('md5');
+  hash.update(param.pass);
+  param.pass = hash.digest('hex');
+  const { phone, pass } = param;
   try {
-    const result = await userService.userLogin(phone, pass)
+    const result = await userService.userLogin(phone, pass);
     if (result && result.length > 0) {
-      res.json({ code: codeMap.success, msg: '登陆成功', login_id: result[0].id,  phone: result[0].phone })
-    } else if (result && result.length == 0) {
+      res.json({
+        code: codeMap.success,
+        msg: '登陆成功',
+        login_id: result[0].id,
+        phone: result[0].phone,
+        nickname: result[0].nickname
+      })
+    } else if (result && result.length === 0) {
       res.json({ code: codeMap.error, msg: '密码输入错误' })
     }
   } catch (err) {
