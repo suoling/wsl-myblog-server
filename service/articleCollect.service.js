@@ -2,7 +2,7 @@ const articleCollectMapper = require('../mapper/articleCollect.mapper');
 const articleMapper = require('../mapper/article.mapper');
 const articleThumbService = require('./articleThumb.service');
 const commentService = require('./comment.service');
-const transfer = require('../const/transfer');
+const transfer = require('../libs/transfer');
 
 const articleCollectService = {
     async articleQueryByUserId ( user_id, page_size, page_num) {

@@ -10,6 +10,6 @@ const transfer = function (str) {
         '#34': '"'
     };
     return str.replace(/&(lt|gt|nbsp|amp|quot|#39|#34);/ig,function(all,t){return arrEntities[t];});
-}
+};
 
-module.exports = transfer
+module.exports = transfer;

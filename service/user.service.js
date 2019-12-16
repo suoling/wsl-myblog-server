@@ -1,4 +1,4 @@
-const userMapper = require('../mapper/user.mapper')
+const userMapper = require('../mapper/user.mapper');
 
 const userService = {
   userRegister (phone, nickname, pass) {

@@ -13,7 +13,7 @@ const articleMapper = {
   },
   articleQueryByUserId (user_id, page_size, page_num) {
     const start = page_size * page_num;
-    const end = page_num
+    const end = page_num;
     return sqlTemplate().article_articleQueryByUserIdSQL({ user_id, start, end })
   },
   articleQueryByUserIdCount (user_id) {
@@ -31,6 +31,6 @@ const articleMapper = {
   articleUpdateById (id, title, description, md_content, html_code) {
     return sqlTemplate().article_articleUpdateByIdSQL({ id, title, description, md_content, html_code })
   }
-}
+};
 
-module.exports = articleMapper
+module.exports = articleMapper;

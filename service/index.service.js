@@ -1,4 +1,4 @@
-const indexMapper = require('../mapper/index.mapper')
+const indexMapper = require('../mapper/index.mapper');
 
 const indexService = {
   queryAll () {
@@ -16,6 +16,6 @@ const indexService = {
   queryById (id) {
     return indexMapper.queryById(id)
   },
-}
+};
 
-module.exports = indexService
+module.exports = indexService;

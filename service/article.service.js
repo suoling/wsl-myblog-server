@@ -3,7 +3,7 @@ const articleThumbService = require('./articleThumb.service');
 const articleCollectService = require('./articleCollect.service');
 const commentService = require('./comment.service');
 const cheerio = require('cheerio');
-const transfer = require('../const/transfer');
+const transfer = require('../libs/transfer');
 
 const articleService = {
   async articleQueryAll (type, user_id, page_size, page_num) {

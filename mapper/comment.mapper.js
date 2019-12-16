@@ -13,6 +13,6 @@ const commentMapper = {
     commentDelete (id) {
         return sqlTemplate().comment_commentDeleteSQL({ id })
     }
-}
+};
 
 module.exports = commentMapper;

@@ -1,4 +1,4 @@
-const sqlTemplate = require('../libs/sqlTemplate')
+const sqlTemplate = require('../libs/sqlTemplate');
 
 const indexMapper = {
   queryAll () {
@@ -16,6 +16,6 @@ const indexMapper = {
   queryById (id) {
     return sqlTemplate().test_queryByIdSQL({ id })
   },
-}
+};
 
-module.exports = indexMapper
+module.exports = indexMapper;

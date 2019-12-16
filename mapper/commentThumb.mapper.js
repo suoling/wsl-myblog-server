@@ -1,4 +1,4 @@
-const sqlTemplate = require('../libs/sqlTemplate')
+const sqlTemplate = require('../libs/sqlTemplate');
 
 const commentThumbMapper = {
     commentThumbQuery (comment_id) {
